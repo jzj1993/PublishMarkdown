@@ -17,7 +17,7 @@ Publish Markdown is an open source tool for publishing local markdown files to b
 
 ## Usage
 
-After downloading and installing, please see the welcome page for details.
+After [downloading](https://github.com/jzj1993/PublishMarkdown/releases) and installing, please see the welcome page for details.
 
 ## Related Articles
 
@@ -26,3 +26,24 @@ After downloading and installing, please see the welcome page for details.
 ## Contributing
 
 [Pull requests](https://github.com/jzj1993/PublishMarkdown/pulls) and stars are always welcome. For bugs and feature requests, please create an [issue](https://github.com/jzj1993/PublishMarkdown/issues).
+
+This project is build on [electron-vue](https://github.com/SimulatedGREG/electron-vue).
+
+Setting up the environment:
+
+```bash
+git clone git@github.com:jzj1993/PublishMarkdown.git
+cd PublishMarkdown
+yarn
+yarn dev
+```
+
+## Screenshots
+
+![](docs/screenshot-1.png)
+![](docs/screenshot-2.png)
+![](docs/screenshot-3.png)
+![](docs/screenshot-4.png)
+![](docs/screenshot-5.png)
+![](docs/screenshot-6.png)
+![](docs/screenshot-7.png)

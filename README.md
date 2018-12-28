@@ -17,12 +17,33 @@ Publish Markdown是一款将本地Markdown文件发布到博客的开源工具�
 
 ## 使用说明
 
-下载安装后，详见欢迎页说明。
+[下载](https://github.com/jzj1993/PublishMarkdown/releases)安装后，详见欢迎页说明。
 
 ## 相关文章
 
 [WordPress+Markdown+为知笔记，实现高质量笔记和博客](http://www.paincker.com/wp-markdown-wiz-blog)
 
-## 其他
+## 参与完善本工具
 
 欢迎提交[PullRequest](https://github.com/jzj1993/PublishMarkdown/pulls)和Star。有任何疑问和建议，可在GitHub创建[Issue](https://github.com/jzj1993/PublishMarkdown/issues)。
+
+工程基于[electron-vue](https://github.com/SimulatedGREG/electron-vue)搭建。
+
+环境配置：
+
+```bash
+git clone git@github.com:jzj1993/PublishMarkdown.git
+cd PublishMarkdown
+yarn
+yarn dev
+```
+
+## 屏幕截图
+
+![](docs/screenshot-1.png)
+![](docs/screenshot-2.png)
+![](docs/screenshot-3.png)
+![](docs/screenshot-4.png)
+![](docs/screenshot-5.png)
+![](docs/screenshot-6.png)
+![](docs/screenshot-7.png)
