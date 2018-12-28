@@ -117,6 +117,11 @@
       if (globalData.fileToOpen) {
         this.openFile(globalData.fileToOpen)
         globalData.fileToOpen = null
+      } else if (remote.process.platform === 'win32' && remote.process.argv.length >= 2) {
+        const file = remote.process.argv[1]
+        if (file) {
+          this.openFile(file)
+        }
       }
     },
     methods: {
