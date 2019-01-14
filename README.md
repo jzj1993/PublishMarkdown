@@ -23,6 +23,10 @@ Publish Markdown是一款将本地Markdown文件发布到博客的开源工具�
 
 [WordPress+Markdown+为知笔记，实现高质量笔记和博客](http://www.paincker.com/wp-markdown-wiz-blog)
 
+## 更新日志
+
+[更新日志](docs/CHANGELOG.md)
+
 ## 参与完善本工具
 
 欢迎提交[PullRequest](https://github.com/jzj1993/PublishMarkdown/pulls)和Star。有任何疑问和建议，可在GitHub创建[Issue](https://github.com/jzj1993/PublishMarkdown/issues)。

@@ -23,6 +23,10 @@ After [downloading](https://github.com/jzj1993/PublishMarkdown/releases) and ins
 
 [WordPress+Markdown+为知笔记，实现高质量笔记和博客](http://www.paincker.com/wp-markdown-wiz-blog)
 
+## ChangeLog
+
+[ChangeLog](docs/CHANGELOG.md)
+
 ## Contributing
 
 [Pull requests](https://github.com/jzj1993/PublishMarkdown/pulls) and stars are always welcome. For bugs and feature requests, please create an [issue](https://github.com/jzj1993/PublishMarkdown/issues).
