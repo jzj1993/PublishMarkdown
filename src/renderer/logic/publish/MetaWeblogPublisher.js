@@ -26,13 +26,15 @@ export class MetaWeblogPublisher extends Publisher {
     this.password = password
     this.postCache = new PostCache(url, username)
     this.mediaCache = new FileCache(url, username)
-    console.log(url, username, password)
+    // console.log(url, username)
   }
 
   async getOldPost(post) {
     const oldPostId = await this.postCache.get(post)
     if (oldPostId) {
+      console.log('metaweblog old post id', oldPostId)
       const oldPost = await this.metaWeblog.getPost(oldPostId, this.username, this.password).catch(() => null)
+      console.log('metaweblog old post', oldPost)
       // noinspection EqualityComparisonWithCoercionJS
       if (oldPost && oldPost.postid == oldPostId) {
         return this.toPost(oldPost)
@@ -50,7 +52,8 @@ export class MetaWeblogPublisher extends Publisher {
 
   async editPost(oldPost, post) {
     const _post = await this.toMetaWeblogPost(post)
-    const id = await this.metaWeblog.editPost(oldPost.id, this.username, this.password, _post, true)
+    const id = oldPost.id
+    await this.metaWeblog.editPost(id, this.username, this.password, _post, true) // return true
     await this.postCache.put(post, id)
     return id
   }
@@ -97,11 +100,10 @@ export class MetaWeblogPublisher extends Publisher {
     if (mediaMode === 'cache') {
       const url = await this.mediaCache.get(file)
       if (await checkUrlValid(url)) {
-        console.log(`use cached media`)
+        console.log(`use cached media: ${file} ==> ${url}`)
         return url
       }
     }
-    console.log(`uploading media...`)
     const bits = await readFileBits(file)
     const mediaObject = {
       name: path.basename(file),
@@ -112,6 +114,7 @@ export class MetaWeblogPublisher extends Publisher {
     const result = await this.metaWeblog.newMediaObject(this.blogId, this.username, this.password, mediaObject)
     const {id, url, type} = result
     await this.mediaCache.put(file, url)
+    console.log(`media uploaded: ${file} ==> ${url}`)
     return url
   }
 }

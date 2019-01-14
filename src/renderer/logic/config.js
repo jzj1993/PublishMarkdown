@@ -5,6 +5,7 @@
 
 const fs = require('fs')
 const Store = require('electron-store')
+const Base64 = require('js-base64').Base64
 
 // user settings
 const settings = new Store({name: 'settings'})
@@ -27,12 +28,30 @@ export function newSite() {
 
 const defaultSites = [newSite()]
 
+function decodeSites(sites) {
+  return sites && sites.map(site => {
+    return {
+      ...site,
+      password: site.password && Base64.decode(site.password)
+    }
+  })
+}
+
+function encodeSites(sites) {
+  return sites && sites.map(site => {
+    return {
+      ...site,
+      password: site.password && Base64.encode(site.password)
+    }
+  })
+}
+
 export function getSites() {
-  return settings.get('sites', defaultSites)
+  return decodeSites(settings.get('sites', defaultSites))
 }
 
 export function saveSites(sites) {
-  settings.set('sites', sites)
+  settings.set('sites', encodeSites(sites))
 }
 
 function getHighlight() {

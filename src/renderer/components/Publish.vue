@@ -174,7 +174,9 @@
         config.saveSites(this.sites)
 
         // publish
-        await Promise.map(this.sites.filter(site => site.selected), site => {
+        const selectedSites = this.sites.filter(site => site.selected)
+        let success = 0
+        await Promise.map(selectedSites, site => {
           return new PostPublisher(site).publish({
             post: this.post,
             publishMode: this.publishMode,
@@ -182,15 +184,21 @@
             editHandler: (post) => this.editHandler(site, post)
           }).then(published => {
             if (published) {
+              success++
               new Notification(this.$t('publishSuccess'), {body: siteToString(site)})
             }
           }).catch(e => {
-            console.error(e)
             new Notification(this.$t('publishError'), {body: siteToString(site) + '\n' + e.message})
+            console.error(e)
           })
         }, {concurrency: 3})
 
         this.publishing = false
+
+        // all success
+        if (success >= selectedSites.length) {
+          this.closePublish()
+        }
       },
       editHandler(site, post) {
         if (site && post) {

@@ -86,6 +86,7 @@ export class Publisher {
 
     // render post in publish mode
     post = await Renderer.render(post.src, post.file, false)
+    console.log('post = ', post)
 
     stateHandler(STATE_READ_POST)
 
@@ -118,13 +119,16 @@ export class Publisher {
     await Promise.map(Array.from(div.getElementsByTagName('img')), async (img) => {
       const src = img.getAttribute('src')
       if (src && src.startsWith('file://')) {
-        const file = src.substr('file://'.length)
+        const file = decodeURI(src.substr('file://'.length))
         if (fs.existsSync(file)) {
           const url = await this.uploadMedia(file, mediaMode)
           if (url) {
-            console.log(`media processed: ${file}  ==>  ${url}`)
             img.setAttribute('src', url)
+          } else {
+            console.error(`media process failure`, file)
           }
+        } else {
+          console.error(`media not exists`, file)
         }
       }
     }, {concurrency: 5})
