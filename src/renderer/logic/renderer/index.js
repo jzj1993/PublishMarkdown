@@ -11,9 +11,9 @@ const htmlToText = require('html-to-text')
 const highlight = require('highlight.js')
 const uslug = require('uslug')
 const MarkdownIt = require('markdown-it')
-const utils = require('./utils')
-const MathJaxFrontRenderer = require('./MathJaxFrontRenderer')
-const config = require('./config')
+const utils = require('../utils')
+const mathJaxFrontRenderer = require('./mathjax-front-renderer')
+const config = require('../config')
 
 let md = undefined
 
@@ -49,7 +49,7 @@ function getMd() {
 
   // mathjax preprocess
   if (config.isMathJaxEnabled()) {
-    md.use(require('./modules/markdown-it-mathjax').get())
+    md.use(require('../modules/markdown-it-mathjax').get())
   }
 
   return md
@@ -144,7 +144,7 @@ export async function render(src, file, preview = true) {
   // mathjax
   if (env.hasMath && config.shouldRenderMathJax(preview)) {
     document.body.appendChild(div)
-    await MathJaxFrontRenderer.typeset(window, div)
+    await mathJaxFrontRenderer.typeset(window, div)
     document.body.removeChild(div)
   }
 

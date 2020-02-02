@@ -11,7 +11,7 @@ const Promise = require('bluebird')
 const request = require('request')
 const {JSDOM} = require('jsdom')
 
-import * as Renderer from '../Renderer'
+import * as renderer from '../renderer'
 
 export const STATE_RENDER = 'render'
 export const STATE_READ_POST = 'read'
@@ -68,7 +68,7 @@ export function checkUrlValid(url) {
 /**
  * 博客发布基类
  */
-export class Publisher {
+export class BasePublisher {
 
   /**
    *
@@ -90,7 +90,7 @@ export class Publisher {
     stateHandler(STATE_RENDER)
 
     // render post in publish mode
-    post = await Renderer.render(post.src, post.file, false)
+    post = await renderer.render(post.src, post.file, false)
     console.log('post = ', post)
 
     stateHandler(STATE_READ_POST)

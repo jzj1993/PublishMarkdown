@@ -89,7 +89,7 @@
 
   const debounce = require('lodash.debounce')
   const config = require('../logic/config')
-  const Renderer = require('../logic/Renderer')
+  const renderer = require('../logic/renderer')
 
   export default {
     name: 'Settings',
@@ -118,7 +118,7 @@
       render: {
         handler() {
           config.saveRenderConfig(this.render)
-          Renderer.notifyConfigChanged()
+          renderer.notifyConfigChanged()
           console.log('render settings saved')
         },
         deep: true

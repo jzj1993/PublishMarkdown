@@ -26,14 +26,14 @@ export function toStrArr(src) {
   return null
 }
 
-const sampleFilePrefix = path.join(__static, 'sample-')
+const sampleFile = path.join(__static, 'sample.md')
 
 export function isSampleFile(file) {
-  return file && file.startsWith(sampleFilePrefix)
+  return file === sampleFile
 }
 
 export function getSampleFile() {
-  return sampleFilePrefix + config.getLanguage() + '.md'
+  return sampleFile
 }
 
 export function openSampleFile() {

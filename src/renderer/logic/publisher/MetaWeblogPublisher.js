@@ -15,12 +15,12 @@ const path = require('path')
 const MetaWeblog = require('metaweblog-api/lib/metaweblog-api')
 
 import {FileCache, PostCache} from './PublishCache'
-import {checkUrlValid, getMimeType, Publisher, readFileBits} from './Publisher'
+import {checkUrlValid, getMimeType, BasePublisher, readFileBits} from './BasePublisher'
 
 /**
  * 基于MetaWeblog接口的博客发布器
  */
-export class MetaWeblogPublisher extends Publisher {
+export class MetaWeblogPublisher extends BasePublisher {
 
   constructor({url, username, password}) {
     super()

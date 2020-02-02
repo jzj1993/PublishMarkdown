@@ -98,7 +98,7 @@
 <script>
 
   import {remote, ipcRenderer} from 'electron'
-  import {PostPublisher} from '../logic/publish'
+  import {Publisher} from '../logic/publisher'
   import {openSampleFile} from '../logic/utils'
 
   const Promise = require('bluebird')
@@ -179,7 +179,7 @@
         const selectedSites = this.sites.filter(site => site.selected)
         let success = 0
         await Promise.map(selectedSites, site => {
-          return new PostPublisher(site).publish({
+          return new Publisher(site).publish({
             post: this.post,
             publishMode: this.publishMode,
             mediaMode: 'cache',

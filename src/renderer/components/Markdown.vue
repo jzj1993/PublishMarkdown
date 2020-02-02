@@ -78,8 +78,8 @@
   const dateFormat = require('dateformat')
   const debounce = require('lodash.debounce')
   const utils = require('../logic/utils')
+  const renderer = require('../logic/renderer')
   import Publish from './Publish'
-  import * as Renderer from '../logic/Renderer'
   import * as statusBar from '../logic/statusBar'
 
   export default {
@@ -116,7 +116,7 @@
     methods: {
       debounceUpdate: debounce(async function () {
         console.log('debounce update')
-        this.post = await Renderer.render(this.src, this.file, true)
+        this.post = await renderer.render(this.src, this.file, true)
       }, 300, {leading: true}),
       onSave() {
         console.log('menu.save')

@@ -88,14 +88,9 @@ const en = {
     '<h2>Introduction</h2>' +
     '<p>Publish Markdown is an open source tool for publishing local Markdown files to blogs, based on Electron, supporting Chinese and English, compatible with Windows, Linux, and MacOS platforms.</p>' +
     '<ol>' +
-    '<li>Currently compatible with MetaWeblog interface blogs, such as WordPress, csdn, cnblogs, 163, oschina, chinaunix, etc., which can be searched online.</li>' +
-    '<li>Provide simple Markdown editing tools. It is recommended to use Haroopad, Typora and other tools to write and use this tool to publish.</li>' +
-    '<li>Provide a local preview of the Markdown release.</li>' +
-    '<li>Support mainstream Markdown syntax, support TOC, code highlighting, MathJax formula rendering, etc.</li>' +
-    '<li>Support for creating new blogs or editing existing blogs.</li>' +
-    '<li>Automatically upload images in blog, and the same image will be reused other than uploading repeatedly when editing the blog.</li>' +
-    '<li>Support setting parameters for blogs, including title, abstract, permalink, create time, tags, categories, etc.</li>' +
-    '<li>Support multiple blog sites to be published simultaneously.</li>' +
+    '<li>Support mainstream Markdown syntax, TOC, code highlighting, MathJax formula. Provide local preview and simple Markdown editing functions (It is recommended to use Haroopad, Typora and other tools to write and use this tool to publish).</li>' +
+    '<li>Full automatically blog posting. Many meta data can be set for blogs, including title, abstract, permalink, create time, tags, categories, etc. Local images in blog will be automatically uploaded. Publishing to multiple sites simultaneously is also supported. Currently support MetaWeblog interface, compatiable with WordPress, csdn, cnblogs, oschina, etc.</li>' +
+    '<li>Blogs which already be published with this tools can be updated (blogs are identified by permalink), and the same image will be reused other than uploading repeatedly when editing the blog (images are identified by file md5).</li>' +
     '</ol>' +
     '<h2>Usage</h2>' +
     '<ol>' +
@@ -184,14 +179,9 @@ const zh = {
     '<h2>简介</h2>' +
     '<p>Publish Markdown是一款将本地Markdown文件发布到博客的开源工具，基于Electron实现，支持中英文，兼容Windows、Linux、MacOS平台。</p>' +
     '<ol>' +
-    '<li>目前兼容支持MetaWeblog接口的博客，例如WordPress、csdn、cnblogs、163、oschina、chinaunix等，具体可在网上搜索。</li>' +
-    '<li>提供简易Markdown编辑功能（建议使用Haroopad、Typora等工具编写好后在使用本工具发布）。</li>' +
-    '<li>提供Markdown发布效果的本地预览。</li>' +
-    '<li>支持主流Markdown语法，支持TOC、代码高亮、MathJax公式渲染等功能。</li>' +
-    '<li>支持创建新博客，或编辑已有博客。</li>' +
-    '<li>自动上传博客中的本地图，编辑博客时相同图片无需重复上传。</li>' +
-    '<li>支持给博客设置参数，包括标题、摘要、固定链接、作者、发布时间、标签、分类等。</li>' +
-    '<li>支持多个博客站点同时发布。</li>' +
+    '<li>支持主流Markdown语法、TOC、代码高亮、MathJax数学公式，支持本地预览和简易编辑功能（建议使用Haroopad、Typora等工具编写好后，再使用本工具发布）。</li>' +
+    '<li>全自动博客发布。博客可设置标题、摘要、固定链接、作者、发布时间、标签、分类等属性，自动批量上传markdown文件中引用的本地图片。支持多站点同时发布。目前支持MetaWeblog接口，兼容WordPress、csdn、cnblogs、oschina等博客，后续可以继续开发其他接口。</li>' +
+    '<li>已经通过本工具发布到远程的博客，可以使用本工具更新(博客使用固定链接即url区分)，且更新时相同图片无需重复上传(图片使用文件md5区分)。</li>' +
     '</ol>' +
     '<h2>使用说明</h2>' +
     '<ol>' +

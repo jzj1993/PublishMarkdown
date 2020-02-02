@@ -1,5 +1,5 @@
 /**
- * 文章发布工具。根据type调用不同的Publisher实现。目前支持MetaWeblog。
+ * 文章发布工具。根据type调用不同的实现。目前支持MetaWeblog。
  *
  * Created by jzj on 2018/12/7.
  */
@@ -7,7 +7,7 @@
 
 import {MetaWeblogPublisher} from './MetaWeblogPublisher'
 
-export class PostPublisher {
+export class Publisher {
 
   constructor({url, username, password, type}) {
     switch (type) {
