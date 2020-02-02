@@ -55,16 +55,17 @@
     }
   },
   "dependencies": {
-    "axios": "^0.18.0",
-    "bluebird": "latest",
+    "axios": "^0.18.1",
+    "bluebird": "^3.7.2",
     "dateformat": "^3.0.3",
     "electron-log": "^2.2.17",
-    "electron-store": "latest",
+    "electron-store": "^5.1.0",
     "filenamify": "^2.1.0",
     "front-matter": "^3.0.1",
     "github-markdown-css": "^2.10.0",
-    "highlight.js": "latest",
+    "highlight.js": "^9.18.0",
     "html-to-text": "^4.0.0",
+    "js-base64": "^2.5.1",
     "jsdom": "^13.1.0",
     "lodash.debounce": "^4.0.8",
     "markdown-it": "^8.4.2",
@@ -80,10 +81,7 @@
     "vue": "^2.5.16",
     "vue-electron": "^1.0.6",
     "vue-i18n": "^8.5.0",
-    "vue-router": "^3.0.1",
-    "vuex": "^3.0.1",
-    "vuex-electron": "^1.0.0",
-    "js-base64": "latest"
+    "vue-router": "^3.0.1"
   },
   "devDependencies": {
     "ajv": "^6.5.0",

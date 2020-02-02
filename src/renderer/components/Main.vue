@@ -6,6 +6,7 @@
 
     <div class="tab-titles">
       <TabTitle v-for="(tab, i) in tabs"
+                :key="i"
                 :tab-title="tabTitle(tab)"
                 :selected="current === i"
                 :tab-click="() => selectTab(i)"
