@@ -1,4 +1,6 @@
 /**
+ * MathJax的前端渲染器，用于在预览窗口渲染MathJax。
+ *
  * Created by jzj on 2018/12/22.
  */
 'use strict'

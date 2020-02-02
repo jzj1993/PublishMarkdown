@@ -1,4 +1,5 @@
 /**
+ * 文章发布工具。根据type调用不同的Publisher实现。目前支持MetaWeblog。
  *
  * Created by jzj on 2018/12/7.
  */

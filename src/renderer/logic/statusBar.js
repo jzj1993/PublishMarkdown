@@ -1,4 +1,6 @@
 /**
+ * 状态栏信息显示
+ *
  * Created by jzj on 2018/12/16.
  */
 'use strict'

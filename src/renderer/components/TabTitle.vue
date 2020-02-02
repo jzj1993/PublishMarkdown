@@ -1,3 +1,5 @@
+<!-- 单个标签，含标题和关闭按钮 -->
+
 <template>
 
   <div class="tab" :class="{selected: selected}" @click="tabClick">

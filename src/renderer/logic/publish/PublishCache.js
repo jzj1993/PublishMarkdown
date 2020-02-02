@@ -1,4 +1,6 @@
 /**
+ * 文章、图片发布缓存，避免文章、图片重复发布
+ *
  * Created by jzj on 2018/12/24.
  */
 'use strict'
@@ -8,6 +10,9 @@ const md5File = require('md5-file/promise')
 const _filenamify = require('filenamify')
 const filenamify = (s) => _filenamify(s, {replacement: '-'})
 
+/**
+ * 缓存基类
+ */
 class Cache {
 
   constructor(type, url, user) {

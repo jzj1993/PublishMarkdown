@@ -1,4 +1,6 @@
 /**
+ * 博客发布基类，可以有多种实现
+ *
  * Created by jzj on 2018/12/24.
  */
 'use strict'
@@ -63,6 +65,9 @@ export function checkUrlValid(url) {
   })
 }
 
+/**
+ * 博客发布基类
+ */
 export class Publisher {
 
   /**

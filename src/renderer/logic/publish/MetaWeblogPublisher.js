@@ -1,4 +1,6 @@
 /**
+ * 基于MetaWeblog接口的博客发布器，支持WordPress等博客
+ *
  * https://codex.wordpress.org/XML-RPC_MetaWeblog_API#metaWeblog.newPost
  * http://xmlrpc.scripting.com/metaWeblogApi.html
  * https://github.com/uhavemyword/metaweblog-api
@@ -15,7 +17,9 @@ const MetaWeblog = require('metaweblog-api/lib/metaweblog-api')
 import {FileCache, PostCache} from './PublishCache'
 import {checkUrlValid, getMimeType, Publisher, readFileBits} from './Publisher'
 
-
+/**
+ * 基于MetaWeblog接口的博客发布器
+ */
 export class MetaWeblogPublisher extends Publisher {
 
   constructor({url, username, password}) {

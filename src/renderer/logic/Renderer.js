@@ -1,4 +1,6 @@
 /**
+ * 渲染器，用于本地预览和远程发布
+ *
  * Created by jzj on 2018/12/11.
  */
 'use strict'
@@ -64,8 +66,7 @@ function replaceLocalImages(div, dir) {
     }
     if (path.isAbsolute(src)) {
       img.setAttribute('src', 'file://' + src)
-    }
-    else {
+    } else {
       img.setAttribute('src', 'file://' + path.join(dir, src))
     }
   }

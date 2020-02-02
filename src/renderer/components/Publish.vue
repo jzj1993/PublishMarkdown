@@ -1,3 +1,5 @@
+<!-- 发布窗口 -->
+
 <template>
 
   <div class="publish-wrapper" v-if="showPublish">
@@ -278,6 +280,7 @@
 
   .buttons {
     text-align: center;
+
     > :not(:first-child) {
       margin-left: 10px;
     }

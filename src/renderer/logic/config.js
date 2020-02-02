@@ -1,4 +1,6 @@
 /**
+ * 配置信息，包括用户设置和操作缓存
+ *
  * Created by jzj on 2018/12/23.
  */
 'use strict'

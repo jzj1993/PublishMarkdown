@@ -1,4 +1,6 @@
 /**
+ * 多语言支持
+ *
  * Created by jzj on 2018/10/3.
  */
 'use strict'
