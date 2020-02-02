@@ -1,4 +1,6 @@
 /**
+ * 菜单
+ *
  * Created by jzj on 2018/12/16.
  */
 'use strict'
@@ -20,7 +22,7 @@ export function init(mainWindow) {
     init(mainWindow)
   }
 
-  const lang = store.get('language', 'en')
+  const lang = store.get('language', 'zh')
   const l = lang === 'zh' ? language.zh : language.en
 
   const template = [

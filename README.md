@@ -37,24 +37,18 @@ After [download](https://github.com/jzj1993/PublishMarkdown/releases) and instal
 
 ## 参与完善本工具 Contributing
 
-欢迎提交[PullRequest](https://github.com/jzj1993/PublishMarkdown/pulls)和Star。有任何疑问和建议，可在GitHub创建[Issue](https://github.com/jzj1993/PublishMarkdown/issues)。
+欢迎提交[PullRequest](https://github.com/jzj1993/PublishMarkdown/pulls)和Star。
 
-工程基于[electron-vue](https://github.com/SimulatedGREG/electron-vue)搭建。
+有任何疑问和建议，可在GitHub创建[Issue](https://github.com/jzj1993/PublishMarkdown/issues)。如出现故障，可在菜单 - 显示 - 切换开发者工具中打开调试窗口，将Console中的错误信息一并提交到Issue。
 
-环境配置：
+[Pull requests](https://github.com/jzj1993/PublishMarkdown/pulls) and stars are always welcome.
 
-```bash
-git clone git@github.com:jzj1993/PublishMarkdown.git
-cd PublishMarkdown
-yarn
-yarn dev
-```
+For bugs and feature requests, please create an [issue](https://github.com/jzj1993/PublishMarkdown/issues). If any error occured, you can click menu View - Toggle Developer Tools to open the debug window, and submit the error message from the console in your issue.
 
-[Pull requests](https://github.com/jzj1993/PublishMarkdown/pulls) and stars are always welcome. For bugs and feature requests, please create an [issue](https://github.com/jzj1993/PublishMarkdown/issues).
 
-This project is build on [electron-vue](https://github.com/SimulatedGREG/electron-vue).
+工程基于[electron-vue](https://github.com/SimulatedGREG/electron-vue)搭建。环境配置：
 
-Setting up the environment:
+This project is build on [electron-vue](https://github.com/SimulatedGREG/electron-vue). Setting up the environment:
 
 ```bash
 git clone git@github.com:jzj1993/PublishMarkdown.git
@@ -62,6 +56,7 @@ cd PublishMarkdown
 yarn
 yarn dev
 ```
+
 
 ## 屏幕截图 Screenshots
 
