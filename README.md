@@ -1,5 +1,10 @@
 # Publish Markdown
 
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://raw.githubusercontent.com/meituan/WMRouter/master/LICENSE)
+[![Release Version](https://img.shields.io/badge/release-0.0.3-red.svg)](https://github.com/jzj1993/PublishMarkdown/releases)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/jzj1993/PublishMarkdown/pulls)
+
+
 ## 简介 Introduction
 
 Publish Markdown是一款将本地Markdown文件发布到博客的开源工具，基于Electron实现，支持中英文，兼容Windows、Linux、MacOS平台。
@@ -24,6 +29,8 @@ After [download](https://github.com/jzj1993/PublishMarkdown/releases) and instal
 
 
 ## 相关文章 Related Articles
+
+[PublishMarkdown：本地Markdown文件发布到博客的开源工具](http://www.paincker.com/publish-markdown)
 
 [WordPress+Markdown+为知笔记，实现高质量笔记和博客](http://www.paincker.com/wp-markdown-wiz-blog)
 

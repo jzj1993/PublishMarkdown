@@ -1,7 +1,7 @@
 {
   "name": "publish-markdown",
   "productName": "Publish Markdown",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "jzj",
   "description": "An open source tool for publishing local markdown files to blogs.",
   "license": "Apache-2.0",
