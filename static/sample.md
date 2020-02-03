@@ -4,31 +4,33 @@
 # 注释：文件开头使用YAML语法配置文章信息，之后是正常的Markdown语法
 # Note: The beginning of the file uses YAML syntax to configure the blog meta data, followed by the normal Markdown syntax.
 
-# 不配置标题则从Markdown一级标题或文件名提取
-# Title will be extracted from heading 1 of markdown or file name if not configured here.
+# 此处如果不配置标题，则提取Markdown中的一级标题，或使用文件名
+# Title will be extracted from heading 1 of markdown or using file name if not configured here.
 title: Sample
 
 
-# 不配置摘要则从正文提取
-# Abstract will be extracted from Markdown if not configured here.
+# 此处如果不配置摘要，则从正文提取开头若干文字
+# Abstract will be extracted from the begining of markdown content if not configured here.
 abstract: 你好！这是一篇示例文档！
 
 
-# URL用于固定链接、编辑文章功能，建议配置
+# URL用于固定链接、编辑文章功能，建议所有文章都配置
 # URL is used for permalink and article editing, and it is recommended to be configured.
 url: sample
 
 
-# 时间使用的时区和系统设置一致
-# Time zone used by time is the same as the system settings.
+# 文章发布时间，使用的时区和系统设置一致，不设置则使用当前时间
+# Article post time, time zone is the same as the system settings. Current time will be used if not configured here.
 date: 2015-07-30 18:35:43
 
 
+# 文章分类
 category:
 - Category1
 - Category2
 
 
+# 文章标签
 tags:
 - Tag1
 - Tag222

@@ -99,6 +99,7 @@ const en = {
     '<li>Click publish from menu, select the blog sites that needs to be published to, click "Publish". Local previews use GitHub styles, and when published to a blog, the final effect depends on the CSS style configuration of the blog.</li>' +
     '<li>For articles <b>published using this tool</b>, when you publish to the <b>same site</b> again using the <b>same URL</b>, you can choose to edit existing articles or create new ones at the time of publishing.</li>' +
     '<li>If you have questions about the format of your document, you can open the <a href="#" data-href="sample">sample markdown file</a> at any time.</li>' +
+    '<li>For more infomation, please visit <a href="https://github.com/jzj1993/PublishMarkdown">GitHub</a>, <a href="http://paincker.com/publish-markdown">Tech Blog</a>.</li>' +
     '</ol>',
 }
 
@@ -190,6 +191,7 @@ const zh = {
     '<li>从菜单点击发布，弹窗勾选需要发布的博客，点击“发布”即可。本地预览使用的是GitHub风格的样式，发布到博客后，最终效果取决于博客的CSS样式配置。</li>' +
     '<li>对于<b>使用本工具发布过的文章</b>，使用<b>相同URL</b>再次发布到<b>相同站点</b>时，可以在发布时选择编辑已有文章还是创建新文章。</li>' +
     '<li>如果对文档编写格式存在疑问，可以随时打开<a href="#" data-href="sample">示例文档</a>查看。</li>' +
+    '<li>更多内容请查看<a href="https://github.com/jzj1993/PublishMarkdown">GitHub</a>，<a href="http://paincker.com/publish-markdown">技术博客</a>。</li>' +
     '</ol>',
 }
 

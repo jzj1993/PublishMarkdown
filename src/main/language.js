@@ -1,4 +1,6 @@
 /**
+ * 窗口的多语言支持
+ *
  * Created by jzj on 2018/12/24.
  */
 'use strict'
