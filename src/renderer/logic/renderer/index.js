@@ -49,7 +49,7 @@ function getMd() {
 
   // mathjax preprocess
   if (config.isMathJaxEnabled()) {
-    md.use(require('../modules/markdown-it-mathjax').get())
+    md.use(require('./markdown-it-mathjax').get())
   }
 
   return md
