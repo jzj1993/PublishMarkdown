@@ -30,16 +30,16 @@ After [download](https://github.com/jzj1993/PublishMarkdown/releases) and instal
 
 ## 相关文章 Related Articles
 
-[PublishMarkdown：本地Markdown文件发布到博客的开源工具](http://www.paincker.com/publish-markdown)
+[WordPress+PublishMarkdown快速构建个人博客](http://www.paincker.com/publish-markdown)
+
+[PublishMarkdown技术实现](http://www.paincker.com/publish-markdown-tech)
 
 [WordPress+Markdown+为知笔记，实现高质量笔记和博客](http://www.paincker.com/wp-markdown-wiz-blog)
 
 
 ## 更新日志 ChangeLog
 
-[更新日志](docs/CHANGELOG.md)
-
-[ChangeLog](docs/CHANGELOG.md)
+[CHANGELOG.md](docs/CHANGELOG.md)
 
 
 ## 参与完善本工具 Contributing

@@ -6,7 +6,7 @@
 
 # 此处如果不配置标题，则提取Markdown中的一级标题，或使用文件名
 # Title will be extracted from heading 1 of markdown or using file name if not configured here.
-title: Sample
+title: 示例标题
 
 
 # 此处如果不配置摘要，则从正文提取开头若干文字
@@ -16,12 +16,12 @@ abstract: 你好！这是一篇示例文档！
 
 # URL用于固定链接、编辑文章功能，建议所有文章都配置
 # URL is used for permalink and article editing, and it is recommended to be configured.
-url: sample
+url: sample-docs-1
 
 
 # 文章发布时间，使用的时区和系统设置一致，不设置则使用当前时间
 # Article post time, time zone is the same as the system settings. Current time will be used if not configured here.
-date: 2015-07-30 18:35:43
+date: 2020-02-01 18:35:43
 
 
 # 文章分类
