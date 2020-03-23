@@ -98,8 +98,10 @@
 <script>
 
   import {remote, ipcRenderer} from 'electron'
+  import * as publisher from '../logic/publisher'
   import {Publisher} from '../logic/publisher'
   import {openSampleFile} from '../logic/utils'
+  import * as statusBar from '../logic/statusBar'
 
   const Promise = require('bluebird')
   const config = require('../logic/config')
@@ -136,6 +138,7 @@
       ipcRenderer.on('menu.publish', () => {
         if (this.active && this.post) {
           this.sites = config.getSites()
+          this.publishMode = config.getPublishMode('manual')
           this.showPublish = true
           if (!this.post.url) {
             this.confirm = {
@@ -175,6 +178,9 @@
         // save sites selection
         config.saveSites(this.sites)
 
+        // save publish mode
+        config.savePublishMode(this.publishMode)
+
         // publish
         const selectedSites = this.sites.filter(site => site.selected)
         let success = 0
@@ -183,7 +189,29 @@
             post: this.post,
             publishMode: this.publishMode,
             mediaMode: 'cache',
-            editHandler: (post) => this.editHandler(site, post)
+            editHandler: (post) => this.editHandler(site, post),
+            stateHandler: (state) => {
+              switch (state) {
+                case publisher.STATE_RENDER:
+                  statusBar.show(this.$t('publish.status.render'))
+                  break
+                case publisher.STATE_READ_POST:
+                  statusBar.show(this.$t('publish.status.read'))
+                  break
+                case publisher.STATE_UPLOAD_MEDIA:
+                  statusBar.show(this.$t('publish.status.upload'))
+                  break
+                case publisher.STATE_PUBLISH_POST:
+                  statusBar.show(this.$t('publish.status.publish'))
+                  break
+                case publisher.STATE_EDIT_POST:
+                  statusBar.show(this.$t('publish.status.edit'))
+                  break
+                case publisher.STATE_COMPLETE:
+                  statusBar.show(this.$t('publish.status.complete'))
+                  break
+              }
+            }
           }).then(published => {
             if (published) {
               success++
@@ -208,7 +236,8 @@
             const item = {
               site,
               post,
-              callback: (edit) => {
+              callback: (edit) => { // edit: boolean
+                // remove item from editList and then resolve
                 const index = this.editList.indexOf(item)
                 this.editList.splice(index, 1)
                 resolve(edit)

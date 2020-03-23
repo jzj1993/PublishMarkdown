@@ -12,13 +12,7 @@ const request = require('request')
 const {JSDOM} = require('jsdom')
 
 import * as renderer from '../renderer'
-
-export const STATE_RENDER = 'render'
-export const STATE_READ_POST = 'read'
-export const STATE_UPLOAD_MEDIA = 'upload'
-export const STATE_PUBLISH_POST = 'publish'
-export const STATE_EDIT_POST = 'edit'
-export const STATE_COMPLETE = 'complete'
+import * as publisher from './index'
 
 /**
  * https://codex.wordpress.org/Function_Reference/get_allowed_mime_types
@@ -71,12 +65,17 @@ export function checkUrlValid(url) {
 export class BasePublisher {
 
   /**
+   * publish post
    *
    * @param post
-   * @param stateHandler
+   * @param stateHandler stateHandler will be called before the start of each stage.
+   *                     arguments: publisher.STATE_XXX
    * @param publishMode 'manual' | 'create' | 'auto'
    * @param mediaMode 'create' | 'cache'
-   * @param editHandler
+   * @param editHandler editHandler will be called when old post detected.
+   *                    arguments: post.
+   *                    return Promise<true>: edit old post.
+   *                    return Promise<false>: create new post.
    * @return {Promise<boolean>} true: published, false: cancelled
    */
   async publish({post, stateHandler, publishMode, mediaMode, editHandler}) {
@@ -87,13 +86,13 @@ export class BasePublisher {
       _stateHandler && _stateHandler(state)
     }
 
-    stateHandler(STATE_RENDER)
+    stateHandler(publisher.STATE_RENDER)
 
     // render post in publish mode
     post = await renderer.render(post.src, post.file, false)
     console.log('post = ', post)
 
-    stateHandler(STATE_READ_POST)
+    stateHandler(publisher.STATE_READ_POST)
 
     let oldPost = null
     switch (publishMode) {
@@ -115,7 +114,7 @@ export class BasePublisher {
     }
     console.log('old post = ', oldPost)
 
-    stateHandler(STATE_UPLOAD_MEDIA)
+    stateHandler(publisher.STATE_UPLOAD_MEDIA)
 
     const jsdom = new JSDOM()
     const div = jsdom.window.document.createElement('div')
@@ -140,14 +139,14 @@ export class BasePublisher {
     post.html = div.innerHTML
 
     if (oldPost) {
-      stateHandler(STATE_EDIT_POST)
+      stateHandler(publisher.STATE_EDIT_POST)
       await this.editPost(oldPost, post)
     } else {
-      stateHandler(STATE_PUBLISH_POST)
+      stateHandler(publisher.STATE_PUBLISH_POST)
       await this.newPost(post)
     }
 
-    stateHandler(STATE_COMPLETE)
+    stateHandler(publisher.STATE_COMPLETE)
     return true
   }
 

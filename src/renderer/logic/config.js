@@ -9,7 +9,7 @@ const fs = require('fs')
 const Store = require('electron-store')
 const Base64 = require('js-base64').Base64
 
-// user settings
+// user settings, will be cleared if clear settings options is clicked
 const settings = new Store({name: 'settings'})
 // other config data
 const config = new Store()
@@ -54,6 +54,14 @@ export function getSites() {
 
 export function saveSites(sites) {
   settings.set('sites', encodeSites(sites))
+}
+
+export function getPublishMode(defaultValue = 'manual') {
+  return settings.get('publish.mode', defaultValue);
+}
+
+export function savePublishMode(publishMode) {
+  settings.set('publish.mode', publishMode);
 }
 
 function getHighlight() {

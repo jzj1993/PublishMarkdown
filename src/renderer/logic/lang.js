@@ -76,6 +76,14 @@ const en = {
     publishModeCreatePost: 'Create a new article',
     publish: 'Publish',
     publishing: 'Publishing...',
+    status: {
+      render: 'Rendering...',
+      read: 'Reading old post...',
+      upload: 'Uploading media...',
+      publish: 'Pulishing post...',
+      edit: 'Editing post...',
+      complete: 'Publish complete'
+    },
 
     confirmUrlTitle: 'Confirm blog information',
     confirmUrlMessage: 'The blog does not have a URL configured. It cannot be edited later using this tool. Do you want to continue publishing? You can open the sample document from the menu to see how the URL is configured.',
@@ -168,6 +176,14 @@ const zh = {
     publishModeCreatePost: '创建新文章',
     publish: '发布',
     publishing: '发布中...',
+    status: {
+      render: '渲染中...',
+      read: '读取旧文章...',
+      upload: '上传图片中...',
+      publish: '发布文章中...',
+      edit: '编辑文章中...',
+      complete: '发布完成'
+    },
 
     confirmUrlTitle: '确认博客信息',
     confirmUrlMessage: '博客没有配置URL，后续无法使用本工具编辑，是否继续发布？你可以从菜单打开示例文档，查看URL的配置方法。',

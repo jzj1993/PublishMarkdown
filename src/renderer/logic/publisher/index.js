@@ -7,6 +7,13 @@
 
 import {MetaWeblogPublisher} from './MetaWeblogPublisher'
 
+export const STATE_RENDER = 'render'
+export const STATE_READ_POST = 'read'
+export const STATE_UPLOAD_MEDIA = 'upload'
+export const STATE_PUBLISH_POST = 'publish'
+export const STATE_EDIT_POST = 'edit'
+export const STATE_COMPLETE = 'complete'
+
 export class Publisher {
 
   constructor({url, username, password, type}) {
