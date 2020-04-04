@@ -55,6 +55,7 @@
   const fs = require('fs')
   const utils = require('../logic/utils')
   const config = require('../logic/config')
+  const useRecord = require('../logic/useRecord')
   const statusBar = require('../logic/statusBar')
 
   export default {
@@ -62,24 +63,27 @@
     components: {TabTitle, Welcome, Settings, Markdown},
     data() {
       return {
-        tabs: config.getTabs(),
-        current: config.getCurrentTab(),
+        tabs: useRecord.getTabs(),
+        current: useRecord.getCurrentTab(),
         statusText: null
       }
     },
     watch: {
       tabs() {
-        config.saveTabs(this.tabs)
+        useRecord.saveTabs(this.tabs)
         console.log('save tab info')
       },
       current() {
-        config.saveCurrentTab(this.current)
+        useRecord.saveCurrentTab(this.current)
       }
+    },
+    destroyed() {
+      statusBar.setCallback(undefined)
     },
     mounted() {
       // console.log('tabs', this.tabs)
 
-      statusBar.handle(text => {
+      statusBar.setCallback(text => {
         this.statusText = text
       })
 

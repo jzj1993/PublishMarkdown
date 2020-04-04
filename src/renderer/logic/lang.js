@@ -7,7 +7,7 @@
 
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
-import {getLanguage} from './config'
+import * as langConfig from '../../common/lang-config'
 
 
 const en = {
@@ -48,7 +48,17 @@ const en = {
     mathjax: 'MathJax Formula',
     renderSettingsNote: '[Default] Preview Only：Render only when previewing locally, only pre-processing when publishing, blogs need to configure plugin to render<br/>' +
       'Preview and publish: Render when local preview and publish, blog needs to configure the corresponding CSS style<br/>' +
-      'Disable: Not render when local preview and publish'
+      'Disable: Not render when local preview and publish',
+
+    abstract: {
+      name: 'Abstract Extraction',
+      options: {
+        empty: 'Remain Empty',
+        article: 'Extract from Article',
+        title: 'Use Title'
+      },
+      notes: 'Abstract extraction when abstract is not configured in meta.'
+    }
   },
 
   meta: {
@@ -149,6 +159,16 @@ const zh = {
     renderSettingsNote: '[默认] 仅预览：只在本地预览时渲染，发布时只做预处理，博客配置插件渲染<br/>' +
       '预览和发布：本地预览、发布时都渲染，博客需要配置相应的CSS样式<br/>' +
       '不使用：本地预览、发布时都不渲染',
+
+    abstract: {
+      name: '摘要自动提取',
+      options: {
+        empty: '保持空白',
+        article: '从正文提取',
+        title: '使用标题'
+      },
+      notes: '当Meta中没有指定摘要时，摘要自动提取方式'
+    }
   },
 
   meta: {
@@ -214,7 +234,7 @@ const zh = {
 Vue.use(VueI18n)
 
 const i18n = new VueI18n({
-  locale: getLanguage(),
+  locale: langConfig.getLanguage(),
   fallbackLocale: 'en',
   messages: {
     en: en,

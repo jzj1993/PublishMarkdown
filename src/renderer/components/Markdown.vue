@@ -11,15 +11,15 @@
       </div>
 
       <div class="right">
-        <div v-show="post" class="content">
+        <div class="content">
 
-          <h1 v-if="post && post.title" class="title">{{ post.title }}</h1>
+          <h1 v-if="post.title" class="title">{{ post.title }}</h1>
 
-          <blockquote v-if="post && post.abstract" class="abstract"><span
-            class="meta-name">{{ $t('meta.abstract') }}</span>{{ post.abstract }}
+          <blockquote class="abstract">
+            <span class="meta-name">{{ $t('meta.abstract') }}</span>{{ post.abstract || $t('meta.empty') }}
           </blockquote>
 
-          <div class="meta" v-if="post">
+          <div class="meta">
 
             <table>
 
@@ -59,7 +59,7 @@
             </table>
           </div>
 
-          <div class="markdown markdown-body" ref="markdown" v-html="post && post.html"></div>
+          <div class="markdown markdown-body" ref="markdown" v-html="post.html"></div>
         </div>
       </div>
     </div>
@@ -90,7 +90,7 @@
       return {
         modified: false,
         src: '',
-        post: null
+        post: {}
       }
     },
     async mounted() {
@@ -116,7 +116,7 @@
     methods: {
       debounceUpdate: debounce(async function () {
         console.log('debounce update')
-        this.post = await renderer.render(this.src, this.file, true)
+        this.post = (await renderer.render(this.src, this.file, true)) || {}
       }, 300, {leading: true}),
       onSave() {
         console.log('menu.save')

@@ -5,9 +5,9 @@
  */
 'use strict'
 
-let _text = null
-let _callback = null
-let _handle = null
+let _text = undefined
+let _callback = undefined
+let _timeout = undefined
 
 function set(text) {
   _text = text
@@ -15,19 +15,19 @@ function set(text) {
 }
 
 export function show(text, duration = 2000) {
-  if (_handle) {
-    clearTimeout(_handle)
-    _handle = null
+  if (_timeout) {
+    clearTimeout(_timeout)
+    _timeout = undefined
   }
   set(text)
   if (duration > 0) {
-    _handle = setTimeout(() => {
-      _handle = null
-      set(null)
+    _timeout = setTimeout(() => {
+      _timeout = undefined
+      set(undefined)
     }, duration)
   }
 }
 
-export function handle(callback) {
+export function setCallback(callback) {
   _callback = callback
 }

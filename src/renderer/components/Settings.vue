@@ -53,6 +53,16 @@
       <h3>{{ $t('setting.renderSettings') }}</h3>
 
       <p>
+        <label for="abstract">{{ $t('setting.abstract.name') }}</label>
+        <select id="abstract" v-model="render.abstract">
+          <option value="empty">{{ $t('setting.abstract.options.empty') }}</option>
+          <option value="article">{{ $t('setting.abstract.options.article') }}</option>
+          <option value="title">{{ $t('setting.abstract.options.title') }}</option>
+        </select>
+      </p>
+      <blockquote class="small">{{ $t('setting.abstract.notes') }}</blockquote>
+
+      <p>
         <label for="highlight">{{ $t('setting.highlight') }}</label>
         <select id="highlight" v-model="render.highlight">
           <option value="preview">{{ $t('setting.previewOnly') }}</option>
@@ -141,7 +151,7 @@
       },
       resetSettings() {
         if (window.confirm(this.$t('setting.resetConfirm'))) {
-          config.clearSettings()
+          config.clear()
           this.sites = config.getSites()
           this.render = config.getRenderConfig()
         }

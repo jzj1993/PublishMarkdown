@@ -1,21 +1,17 @@
 /**
- * 配置信息，包括用户设置和操作缓存
+ * user settings
  *
  * Created by jzj on 2018/12/23.
  */
 'use strict'
 
-const fs = require('fs')
 const Store = require('electron-store')
 const Base64 = require('js-base64').Base64
 
-// user settings, will be cleared if clear settings options is clicked
-const settings = new Store({name: 'settings'})
-// other config data
-const config = new Store()
+const store = new Store({name: 'settings'})
 
-export function clearSettings() {
-  settings.clear()
+export function clear() {
+  store.clear()
 }
 
 export function newSite() {
@@ -30,7 +26,9 @@ export function newSite() {
 
 const defaultSites = [newSite()]
 
-function decodeSites(sites) {
+export function getSites() {
+  const sites = store.get('sites', defaultSites)
+  // decode
   return sites && sites.map(site => {
     return {
       ...site,
@@ -39,96 +37,33 @@ function decodeSites(sites) {
   })
 }
 
-function encodeSites(sites) {
-  return sites && sites.map(site => {
+export function saveSites(sites) {
+  // encode
+  sites = sites && sites.map(site => {
     return {
       ...site,
       password: site.password && Base64.encode(site.password)
     }
   })
-}
-
-export function getSites() {
-  return decodeSites(settings.get('sites', defaultSites))
-}
-
-export function saveSites(sites) {
-  settings.set('sites', encodeSites(sites))
+  return store.set('sites', sites)
 }
 
 export function getPublishMode(defaultValue = 'manual') {
-  return settings.get('publish.mode', defaultValue);
+  return store.get('publish.mode', defaultValue)
 }
 
 export function savePublishMode(publishMode) {
-  settings.set('publish.mode', publishMode);
-}
-
-function getHighlight() {
-  return settings.get('render.highlight', 'preview')
-}
-
-function getMathjax() {
-  return settings.get('render.mathjax', 'preview')
+  return store.set('publish.mode', publishMode)
 }
 
 export function getRenderConfig() {
-  return {
-    highlight: getHighlight(),
-    mathjax: getMathjax(),
-  }
+  return store.get('render', {
+    abstract: 'empty',
+    highlight: 'preview',
+    mathjax: 'preview',
+  })
 }
 
 export function saveRenderConfig(render) {
-  settings.set('render.highlight', render.highlight)
-  settings.set('render.mathjax', render.mathjax)
-}
-
-export function isMathJaxEnabled() {
-  const mathjax = getMathjax()
-  return mathjax === 'preview' || mathjax === 'publish'
-}
-
-function shouldRender(preview, config) {
-  if (preview) {
-    return config === 'preview' || config === 'publish'
-  } else {
-    return config === 'publish'
-  }
-}
-
-export function shouldRenderHighlight(preview) {
-  return shouldRender(preview, getHighlight())
-}
-
-export function shouldRenderMathJax(preview) {
-  return shouldRender(preview, getMathjax())
-}
-
-export function getLanguage() {
-  return config.get('language', 'en')
-}
-
-export function getTabs() {
-  let tabs = config.get('tabs', [{type: 'welcome'}]).filter(tab => {
-    return tab.type !== 'markdown' || fs.existsSync(tab.file)
-  })
-  tabs.forEach(tab => {
-    tab.modified = false
-  })
-  return tabs
-}
-
-export function getCurrentTab() {
-  return config.get('tab-current', 0)
-}
-
-export function saveTabs(tabs) {
-  config.set('tabs', tabs.map(tab => {
-    return {type: tab.type, title: tab.title, file: tab.file}
-  }))
-}
-
-export function saveCurrentTab(index) {
-  config.set('tab-current', index)
+  return store.set('render', render)
 }

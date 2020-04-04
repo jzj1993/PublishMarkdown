@@ -7,7 +7,6 @@
 
 const path = require('path')
 const fm = require('front-matter')
-const htmlToText = require('html-to-text')
 const highlight = require('highlight.js')
 const uslug = require('uslug')
 const MarkdownIt = require('markdown-it')
@@ -15,16 +14,13 @@ const utils = require('../utils')
 const mathJaxFrontRenderer = require('./mathjax-front-renderer')
 const config = require('../config')
 
+let renderConfig = undefined
 let md = undefined
 
-export function notifyConfigChanged() {
-  md = undefined
-}
+init()
 
-function getMd() {
-  if (md) {
-    return md
-  }
+function init() {
+  renderConfig = config.getRenderConfig()
 
   // https://github.com/markdown-it/markdown-it
   md = new MarkdownIt({
@@ -48,11 +44,14 @@ function getMd() {
   })
 
   // mathjax preprocess
-  if (config.isMathJaxEnabled()) {
+  const mathjax = renderConfig.mathjax
+  if (mathjax === 'preview' || mathjax === 'publish') {
     md.use(require('./markdown-it-mathjax').get())
   }
+}
 
-  return md
+export function notifyConfigChanged() {
+  init()
 }
 
 function replaceLocalImages(div, dir) {
@@ -106,6 +105,31 @@ function toSystemTimezone(date) {
   return date
 }
 
+function extractAbstract(html) {
+  // https://www.npmjs.com/package/html-to-text
+  const htmlToText = require('html-to-text')
+  let string = htmlToText.fromString(html, {
+    wordwrap: false,
+    ignoreHref: true,
+    ignoreImage: true,
+    preserveNewlines: true,
+    uppercaseHeadings: false,
+    singleNewLineParagraphs: true,
+  })
+  if (string.length > 100) {
+    string = string.substr(0, 100) + '...'
+  }
+  return string
+}
+
+function shouldRender(isPreview, config) {
+  if (isPreview) {
+    return config === 'preview' || config === 'publish'
+  } else {
+    return config === 'publish'
+  }
+}
+
 /**
  * @param src file content
  * @param file file path
@@ -131,18 +155,18 @@ export async function render(src, file, preview = true) {
 
   // markdown: html, title
   const env = {title: attr.title, hasMath: false}
-  let html = getMd().render(markdown, env)
+  let html = md.render(markdown, env)
 
   const div = createInvisibleDiv(document, html)
 
   // local image files
   replaceLocalImages(div, path.dirname(file))
   // highlight
-  if (config.shouldRenderHighlight(preview)) {
+  if (shouldRender(preview, renderConfig.highlight)) {
     await highlightCode(div)
   }
   // mathjax
-  if (env.hasMath && config.shouldRenderMathJax(preview)) {
+  if (env.hasMath && shouldRender(preview, renderConfig.mathjax)) {
     document.body.appendChild(div)
     await mathJaxFrontRenderer.typeset(window, div)
     document.body.removeChild(div)
@@ -158,7 +182,6 @@ export async function render(src, file, preview = true) {
   post.markdown = markdown
   post.title = env.title || utils.fileName(file) || 'Unnamed'
   post.html = html
-  post.abstract = attr.abstract || htmlToText.fromString(html, {wordwrap: false}).substr(0, 100)
 
   post.url = attr.url // || encodeURI(post.title)
   post.tags = attr.tags
@@ -166,7 +189,23 @@ export async function render(src, file, preview = true) {
   post.authors = attr.authors
   post.date = attr.date
 
-  console.log(`render post '${post.title}' cost ${getTime() - startTime} ms`)
+  post.abstract = attr.abstract
+  if (!post.abstract) {
+    switch (renderConfig.abstract) {
+      case 'title':
+        post.abstract = post.title
+        break
+      case 'article':
+        post.abstract = extractAbstract(html)
+        break
+      case 'empty':
+      default:
+        break
+    }
+  }
+
+  console.log(`render post cost ${getTime() - startTime} ms`)
+  // console.log(post)
 
   return post
 }

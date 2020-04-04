@@ -7,9 +7,7 @@
 
 import {Menu, app, dialog, shell} from 'electron'
 
-const Store = require('electron-store')
-const store = new Store()
-
+const langConfig = require('../common/lang-config')
 const language = require('./language')
 
 export function init(mainWindow) {
@@ -17,12 +15,12 @@ export function init(mainWindow) {
   const webContents = mainWindow.webContents
 
   function setLanguage(lang) {
-    store.set('language', lang)
+    langConfig.setLanguage(lang)
     webContents.send('menu.language', lang)
     init(mainWindow)
   }
 
-  const lang = store.get('language', 'zh')
+  const lang = langConfig.getLanguage()
   const l = lang === 'zh' ? language.zh : language.en
 
   const template = [
