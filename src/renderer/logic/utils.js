@@ -92,3 +92,30 @@ export function setTextareaTabKey(textarea) {
     }
   }
 }
+
+/**
+ * insert script to document head
+ *
+ * @param document
+ * @param src script src. file:///xxx.js
+ * @param text script text. var a = 1...
+ * @return {undefined|Promise<any>}
+ */
+export function loadScript({document, src = undefined, text = undefined}) {
+  return (src || text) && new Promise((resolve, reject) => {
+    try {
+      const script = document.createElement('script')
+      script.type = 'text/javascript'
+      if (src) script.src = src
+      if (text) script.text = text
+      script.addEventListener('load', () => {
+        console.log('script load success [' + (src || text) + ']')
+        resolve()
+      })
+      document.getElementsByTagName('head')[0].appendChild(script)
+    } catch (error) {
+      console.error('script load failed [' + (src || text) + ']', error)
+      reject(error)
+    }
+  })
+}

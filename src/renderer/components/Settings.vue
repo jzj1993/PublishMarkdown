@@ -63,24 +63,33 @@
       <blockquote class="small">{{ $t('setting.abstract.notes') }}</blockquote>
 
       <p>
-        <label for="highlight">{{ $t('setting.highlight') }}</label>
+        <label for="highlight">{{ $t('setting.renderFeature.highlight') }}</label>
         <select id="highlight" v-model="render.highlight">
-          <option value="preview">{{ $t('setting.previewOnly') }}</option>
-          <option value="publish">{{ $t('setting.previewAndPublish') }}</option>
-          <option value="none">{{ $t('setting.disable') }}</option>
+          <option value="preview">{{ $t('setting.renderFeature.options.previewOnly') }}</option>
+          <option value="publish">{{ $t('setting.renderFeature.options.previewAndPublish') }}</option>
+          <option value="none">{{ $t('setting.renderFeature.options.disable') }}</option>
         </select>
       </p>
 
       <p>
-        <label for="math">{{ $t('setting.mathjax') }}</label>
-        <select id="math" v-model="render.mathjax">
-          <option value="preview">{{ $t('setting.previewOnly') }}</option>
-          <option value="publish">{{ $t('setting.previewAndPublish') }}</option>
-          <option value="none">{{ $t('setting.disable') }}</option>
+        <label for="mermaid">{{ $t('setting.renderFeature.mermaid') }}</label>
+        <select id="mermaid" v-model="render.mermaid">
+          <option value="preview">{{ $t('setting.renderFeature.options.previewOnly') }}</option>
+          <option value="publish">{{ $t('setting.renderFeature.options.previewAndPublish') }}</option>
+          <option value="none">{{ $t('setting.renderFeature.options.disable') }}</option>
         </select>
       </p>
 
-      <blockquote class="small" v-html="$t('setting.renderSettingsNote')"></blockquote>
+      <p>
+        <label for="math">{{ $t('setting.renderFeature.mathjax') }}</label>
+        <select id="math" v-model="render.mathjax">
+          <option value="preview">{{ $t('setting.renderFeature.options.previewOnly') }}</option>
+          <option value="publish">{{ $t('setting.renderFeature.options.previewAndPublish') }}</option>
+          <option value="none">{{ $t('setting.renderFeature.options.disable') }}</option>
+        </select>
+      </p>
+
+      <blockquote class="small" v-html="$t('setting.renderFeature.notes')"></blockquote>
 
       <h3>{{ $t('setting.otherSettings') }}</h3>
 

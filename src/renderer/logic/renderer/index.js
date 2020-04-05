@@ -11,7 +11,8 @@ const highlight = require('highlight.js')
 const uslug = require('uslug')
 const MarkdownIt = require('markdown-it')
 const utils = require('../utils')
-const mathJaxFrontRenderer = require('./mathjax-front-renderer')
+const mermaidRenderer = require('./mermaid-front-renderer')
+const mathJaxRenderer = require('./mathjax-front-renderer')
 const config = require('../config')
 
 let renderConfig = undefined
@@ -44,9 +45,13 @@ function init() {
   })
 
   // mathjax preprocess
-  const mathjax = renderConfig.mathjax
-  if (mathjax === 'preview' || mathjax === 'publish') {
+  if (isFeatureEnabled(renderConfig.mathjax)) {
     md.use(require('./markdown-it-mathjax').get())
+  }
+
+  // mermaid preprocess
+  if (isFeatureEnabled(renderConfig.mermaid)) {
+    md.use(require('./markdown-it-mermaid'))
   }
 }
 
@@ -122,7 +127,11 @@ function extractAbstract(html) {
   return string
 }
 
-function shouldRender(isPreview, config) {
+function isFeatureEnabled(config) {
+  return config === 'preview' || config === 'publish'
+}
+
+function shouldRenderFeature(isPreview, config) {
   if (isPreview) {
     return config === 'preview' || config === 'publish'
   } else {
@@ -133,10 +142,10 @@ function shouldRender(isPreview, config) {
 /**
  * @param src file content
  * @param file file path
- * @param preview true: preview, false: publish
+ * @param isPreview true: preview, false: publish
  * @return {Promise<*>}
  */
-export async function render(src, file, preview = true) {
+export async function render(src, file, isPreview = true) {
   const startTime = getTime()
 
   src = src && src.trim() || ''
@@ -162,13 +171,17 @@ export async function render(src, file, preview = true) {
   // local image files
   replaceLocalImages(div, path.dirname(file))
   // highlight
-  if (shouldRender(preview, renderConfig.highlight)) {
+  if (shouldRenderFeature(isPreview, renderConfig.highlight)) {
     await highlightCode(div)
   }
+  // mermaid
+  if (shouldRenderFeature(isPreview, renderConfig.mermaid)) {
+    await mermaidRenderer.render(div)
+  }
   // mathjax
-  if (env.hasMath && shouldRender(preview, renderConfig.mathjax)) {
+  if (env.hasMath && shouldRenderFeature(isPreview, renderConfig.mathjax)) {
     document.body.appendChild(div)
-    await mathJaxFrontRenderer.typeset(window, div)
+    await mathJaxRenderer.render(div)
     document.body.removeChild(div)
   }
 

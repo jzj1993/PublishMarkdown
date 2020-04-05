@@ -1,7 +1,13 @@
 /**
- * MarkdownIt的MathJax插件，在markdown-it-mathjax基础上做了少量修改。
+ * mathjax preprocess
  *
- * https://github.com/classeur/markdown-it-mathjax.git
+ * markdown ==> html for mathjax
+ *
+ * $\frac{a}{b}$  ==>  \( \frac{a}{b} \)
+ * $$ \frac{a}{b} $$  ==>  \[ \frac{a}{b} \]
+ *
+ * Reference:
+ *   https://github.com/classeur/markdown-it-mathjax.git
  */
 'use strict'
 

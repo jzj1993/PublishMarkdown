@@ -41,15 +41,6 @@ const en = {
     resetConfirm: 'Confirm to reset all settings ?',
 
     renderSettings: 'Render Settings',
-    highlight: 'Code Highlight',
-    previewOnly: 'Preview Only',
-    previewAndPublish: 'Preview and Publish',
-    disable: 'Disable',
-    mathjax: 'MathJax Formula',
-    renderSettingsNote: '[Default] Preview Only：Render only when previewing locally, only pre-processing when publishing, blogs need to configure plugin to render<br/>' +
-      'Preview and publish: Render when local preview and publish, blog needs to configure the corresponding CSS style<br/>' +
-      'Disable: Not render when local preview and publish',
-
     abstract: {
       name: 'Abstract Extraction',
       options: {
@@ -58,6 +49,19 @@ const en = {
         title: 'Use Title'
       },
       notes: 'Abstract extraction when abstract is not configured in meta.'
+    },
+    renderFeature: {
+      highlight: 'Code Highlight',
+      mathjax: 'MathJax Formula',
+      mermaid: 'Mermaid Diagrams',
+      options: {
+        previewOnly: 'Preview Only',
+        previewAndPublish: 'Preview and Publish',
+        disable: 'Disable',
+      },
+      nodes: '[Default] Preview Only：Render only when previewing locally, only pre-processing when publishing, blogs need to configure plugin to render<br/>' +
+        'Preview and publish: Render when local preview and publish, blog needs to configure the corresponding CSS style<br/>' +
+        'Disable: Not render when local preview and publish',
     }
   },
 
@@ -151,15 +155,6 @@ const zh = {
     resetConfirm: '确认重置全部设置为默认值？',
 
     renderSettings: '渲染设置',
-    highlight: '代码高亮',
-    previewOnly: '仅预览',
-    previewAndPublish: '预览和发布',
-    disable: '禁用',
-    mathjax: 'MathJax公式',
-    renderSettingsNote: '[默认] 仅预览：只在本地预览时渲染，发布时只做预处理，博客配置插件渲染<br/>' +
-      '预览和发布：本地预览、发布时都渲染，博客需要配置相应的CSS样式<br/>' +
-      '不使用：本地预览、发布时都不渲染',
-
     abstract: {
       name: '摘要自动提取',
       options: {
@@ -168,6 +163,20 @@ const zh = {
         title: '使用标题'
       },
       notes: '当Meta中没有指定摘要时，摘要自动提取方式'
+    },
+
+    renderFeature: {
+      highlight: '代码高亮',
+      mathjax: 'MathJax公式',
+      mermaid: 'Mermaid图表',
+      options: {
+        previewOnly: '仅预览',
+        previewAndPublish: '预览和发布',
+        disable: '禁用',
+      },
+      notes: '[默认] 仅预览：只在本地预览时渲染，发布时只做预处理，博客配置插件渲染<br/>' +
+        '预览和发布：本地预览、发布时都渲染，博客需要配置相应的CSS样式<br/>' +
+        '不使用：本地预览、发布时都不渲染',
     }
   },
 

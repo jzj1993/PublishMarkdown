@@ -57,11 +57,17 @@ export function savePublishMode(publishMode) {
 }
 
 export function getRenderConfig() {
-  return store.get('render', {
+  let defaultValue = {
     abstract: 'empty',
     highlight: 'preview',
     mathjax: 'preview',
-  })
+    mermaid: 'preview',
+  }
+  let config = store.get('render', {})
+  return {
+    ...defaultValue,
+    ...config
+  }
 }
 
 export function saveRenderConfig(render) {
