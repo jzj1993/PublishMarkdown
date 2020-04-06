@@ -32,24 +32,33 @@ function init() {
 
   // extract title from markdown
   md.use(require('markdown-it-title'))
+
   // underline syntax support
   md.use(require('markdown-it-underline'))
+
   // generate anchor for heading
   md.use(require('markdown-it-anchor'), {
     slugify: s => uslug(s)
   })
+
   // generate toc
   md.use(require('markdown-it-table-of-contents'), {
     markerPattern: /^\[toc]/im,
     includeLevel: [1, 2, 3, 4, 5, 6]
   })
 
+  // code preprocess ( already done by markdown-it, no plugin needed )
+  // ```js ... ```  ==>  <pre><code class="language-js"> ... </code></pre>
+
   // mathjax preprocess
+  // $\frac{a}{b}$  ==>  \( \frac{a}{b} \)
+  // $$ \frac{a}{b} $$  ==>  \[ \frac{a}{b} \]
   if (isFeatureEnabled(renderConfig.mathjax)) {
     md.use(require('./markdown-it-mathjax').get())
   }
 
   // mermaid preprocess
+  // ```mermaid ... ```  ==>  <div class="mermaid">...</div>
   if (isFeatureEnabled(renderConfig.mermaid)) {
     md.use(require('./markdown-it-mermaid'))
   }
@@ -92,6 +101,11 @@ function getTime() {
   return window.performance ? window.performance.now() : Date.now()
 }
 
+/**
+ * code highlight
+ *     <pre><code class="language-js"> ... </code></pre>
+ * ==> <pre><code class="language-js"><span class="...">...</span><span>...</span></code></pre>
+ */
 function highlightCode(div) {
   const elements = div.querySelectorAll('pre code')
   if (elements) {
